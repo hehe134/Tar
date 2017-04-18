@@ -1,0 +1,6 @@
+file1.txt:
+Hello world!
+wzq
+file2.txt:
+Hello world!
+wzq
