@@ -62,7 +62,6 @@ public class Tar {
                 InputStreamReader reader = new InputStreamReader(new FileInputStream(args[args.length - 1]));
                 BufferedReader br = new BufferedReader(reader);
                 String line = br.readLine();
-
                 int i = 1;
                 File writename = new File("file" + i + ".txt");
                 i++;
@@ -78,7 +77,7 @@ public class Tar {
                         writename.createNewFile();
                         out = new BufferedWriter(new FileWriter(writename));
                     } else {
-                        out.write(line+"\r\n");
+                        out.write(line + "\r\n");
 
 //                    out.write("\r\n");
                     }
