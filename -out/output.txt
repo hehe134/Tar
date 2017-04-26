@@ -1,6 +1,5 @@
 file1.txt:
-Hello world!
-wzq
+123
+abc
 file2.txt:
 Hello world!
-wzq
