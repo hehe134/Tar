@@ -1,5 +1,7 @@
-file1.txt:
-123
+file1.txt
+321
 abc
-file2.txt:
-Hello world!
+**********
+file2.txt
+abc
+def

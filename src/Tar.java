@@ -20,7 +20,7 @@ public class Tar {
 
             String path = rootDictory.getAbsolutePath();
             File file = new File(path);
-            File[] tempList = file.listFiles();
+//            File[] tempList = file.listFiles();
 //                File writename = new File(path+"output.txt");
 
 
@@ -28,27 +28,29 @@ public class Tar {
                 File writename = new File(args[args.length - 1]);
                 writename.createNewFile();
                 BufferedWriter out = new BufferedWriter(new FileWriter(writename));
-                // System.out.println(rootDictory.getAbsolutePath());
-                for (int i = 0; i < tempList.length; i++) {
-                    for (int n = 0; n < (args.length - 2); n++) {
-                        if (args[n].equals(tempList[i].getName())) {
+//                for (int i = 0; i < tempList.length; i++) {
+                for (int n = 0; n < (args.length - 2); n++) {
+//                        if (args[n].equals(tempList[i].getName())) {
 
-                            File filename = new File(args[n]);
-                            InputStreamReader reader = new InputStreamReader(new FileInputStream(filename));
-                            String line;
-                            BufferedReader br = new BufferedReader(reader);
+                    File filename = new File(args[n]);
+                    if (filename.exists()) {
+                        InputStreamReader reader = new InputStreamReader(new FileInputStream(filename));
+                        String line;
+                        BufferedReader br = new BufferedReader(reader);
 
 //                            reader = new InputStreamReader(new FileInputStream(tempList[i]));
 //                            br = new BufferedReader(reader);
+                        line = br.readLine();
+                        out.write(args[n] + "\r\n");
+                        while (line != null) {
+                            out.write(line);
                             line = br.readLine();
-                            out.write(args[n] + ":\r\n");
-                            while (line != null) {
-                                out.write(line);
-                                line = br.readLine();
-                                out.write("\r\n");
+                            out.write("\r\n");
 
 
-                            }
+                        }
+                        if (n != args.length - 3) {
+                            out.write("**********\r\n");
                         }
                     }
                 }
@@ -62,18 +64,18 @@ public class Tar {
                 InputStreamReader reader = new InputStreamReader(new FileInputStream(args[args.length - 1]));
                 BufferedReader br = new BufferedReader(reader);
                 String line = br.readLine();
-                int i = 1;
-                File writename = new File("file" + i + ".txt");
-                i++;
+
+                File writename = new File(line);
+
                 writename.createNewFile();
                 BufferedWriter out = new BufferedWriter(new FileWriter(writename));
                 line = br.readLine();
                 while (line != null) {
-                    if (line.equals("file" + i + ".txt:")) {
+                    if (line.equals("**********")) {
                         out.flush();
                         out.close();
-                        i++;
-                        writename = new File(path + "file" + i + ".txt");
+                        line = br.readLine();
+                        writename = new File(line);
                         writename.createNewFile();
                         out = new BufferedWriter(new FileWriter(writename));
                     } else {
